@@ -1,8 +1,12 @@
-<?php
-	//commento
-	/**
-	* Commento multi riga
-	*/
-	$variabile = 123e2;
-	echo("prova");
-?>
+<!DOCTYPE html>
+
+<html lang="it">
+	<head>
+		<title>Homepage</title>
+		<link rel="stylesheet" href="template/css/bootstrap/bootstrap.css" />
+		
+	</head>
+	<body>
+		Prova
+	</body>
+</html>
