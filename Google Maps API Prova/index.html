@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <style>
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #map {
+        height: 60%;
+		width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+      var map;
+	  var myLatLng = {lat: 3.0469925, lng: 101.0815674};
+	  var locations = [
+			['Qui c\'è il marchio bello !', 3.180967,101.715546],
+			['Qui c\'è il marchio incantevole !', 3.200848,101.616669],
+			['Qui c\'è l\'avvenente marchio !', 3.147372,101.597443],
+			['Qui c\'è il marchio vistoso !', 3.19125,101.710052]
+		];
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: locations[0][1], lng: locations[0][2]},
+          zoom: 10
+        });
+		
+		// Create a marker and set its position.
+		console.log(locations.length);
+		for (i = 0; i < locations.length; i++) {
+			marker = new google.maps.Marker({
+			position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+			map: map,
+			title: locations[i][0]
+		});
+		/*var marker = new google.maps.Marker({
+			map: map,
+			position: myLatLng,
+			title: 'Qui c\'è il marchio bello !'
+		});*/
+		
+		}
+	  }
+	  
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBCQgkbimzrywGvA4PPgIYJ3kv7zyF72qc&callback=initMap"
+    async defer></script>
+	<div>Ciao</div>
+  </body>
+</html>
