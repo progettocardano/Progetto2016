@@ -7,10 +7,6 @@
 		
 	</head>
 	<body>
-<<<<<<< HEAD
-		Provasdfasdfdfhghgdfgh
-=======
-		Provasdfasdf
->>>>>>> 2f32c896de9a8d69c03710e7bb5e61425a268516
+		
 	</body>
 </html>
