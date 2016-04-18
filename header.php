@@ -12,7 +12,7 @@
 			maximum-scale=1,
 			user-scalable=no" />
 		
-		<title>Homepage</title>
+		<title><?php echo($PAGE_TITLE); ?></title>
 		
 		<link rel="stylesheet" href="template/css/bootstrap.css" />
 		<script type="text/javascript" src="template/js/jquery-2.2.3.min.js"></script>
@@ -44,16 +44,43 @@
                         <li><a href=""></a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <!-- TODO: Implementare login handler -->
-                        <?php if(true) { ?>
+						<li>
+                        <?php if(!$LOGGED_IN) { ?>
                         <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#modal-login">Accedi</button>  
                         <?php } else { ?>
-                        <p class="navbar-text">Eseguito accesso come <?php echo("Utente") ?></p>
+                        <p class="navbar-text">Eseguito accesso come <?php echo($_SESSION["user"]["cognome"]) ?></p>
                         <?php } ?>
-                    </ul> <!-- /.navbar-right -->
+						</li>
+						<?php if($LOGGED_IN) { ?>
+						<li>
+							<a href="#" data-toggle="modal" data-target="#modal-logout">Esci</a>
+						<li>
+						<?php } ?>
+				   </ul> <!-- /.navbar-right -->
                 </div> <!-- /.collapse navbar-collapse -->
             </div> <!-- /.container-fluid -->
-            
+			<?php if($LOGGED_IN) { ?>
+
+			<div class="modal fade" id="modal-logout" tabindex="-1" role="dialog" aria-labelledby="modal-dialog-logout">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Chiudi"><span aria-hidden="true">&times;</span></button>
+							<h4 class="modal-title" id="modal-label-logout">Esci</h4>
+						</div> <!-- /.modal-header -->
+						<div class="modal-body">
+							Sei sicuro di voler uscire?
+						</div> <!-- /.modal-body -->
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
+							<button type="button" class="btn btn-danger" id="modal-logout-button" data-loading-text="Attendi...">Esci</button>
+						</div> <!-- /.modal-footer -->
+					</div> <!-- /.modal-content -->
+				</div> <!-- /.modal-dialog -->
+			</div> <!-- /#modal-logout -->
+
+			<?php } else { ?>
+
             <div class="modal fade" id="modal-login" tabindex="-1" role="dialog" aria-labelledby="modal-label-login">
                 <form class="form-horizontal" id="modal-login-form">
                     <div class="modal-dialog" role="document">
@@ -79,11 +106,12 @@
                                 </div>
                             </div> <!-- /.modal-body -->
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>
                                 <button type="submit" class="btn btn-primary" id="modal-login-submit" data-loading-text="Attendere..." autocomplete="off">Accedi</button>
                             </div> <!-- /.modal-footer -->
                         </div> <!-- /.modal-content -->
                     </div> <!-- /.modal-dialog -->
                 </form> <!-- /form.form-horizontal -->
-            </div> <!-- /.modal fade -->
+            </div> <!-- /#modal-login -->
+			<?php } ?>
         </nav> <!-- /.navbar -->

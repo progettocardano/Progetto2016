@@ -13,4 +13,9 @@
     }
     
     session_start();
+	$LOGGED_IN = false;
+	
+	if(isset($_SESSION["user"])) {
+		$LOGGED_IN = true;
+	}
 ?>
