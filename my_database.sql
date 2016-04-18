@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 17, 2016 at 08:34 PM
+-- Generation Time: Apr 18, 2016 at 04:17 PM
 -- Server version: 5.7.11
 -- PHP Version: 5.6.19
 
@@ -52,6 +52,13 @@ CREATE TABLE `docenti` (
   `data_nascita` date DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
+--
+-- Dumping data for table `docenti`
+--
+
+INSERT INTO `docenti` (`docente_id`, `username`, `password`, `nome`, `cognome`, `materia`, `data_nascita`) VALUES
+(1, 'Castro', '$1$2$IOb0F2UJNr7bgs57NTZuU/', 'Adrian David', 'Castro Tenemaya', 'Informatica', '1997-04-29');
+
 -- --------------------------------------------------------
 
 --
@@ -60,6 +67,8 @@ CREATE TABLE `docenti` (
 
 CREATE TABLE `studenti` (
   `matricola` int(11) NOT NULL,
+  `username` varchar(32) COLLATE latin1_general_ci NOT NULL,
+  `password` varchar(128) COLLATE latin1_general_ci NOT NULL,
   `nome` varchar(64) COLLATE latin1_general_ci NOT NULL,
   `cognome` varchar(64) COLLATE latin1_general_ci NOT NULL,
   `codice_fiscale` varchar(16) COLLATE latin1_general_ci NOT NULL,
@@ -110,7 +119,7 @@ ALTER TABLE `attivita`
 -- AUTO_INCREMENT for table `docenti`
 --
 ALTER TABLE `docenti`
-  MODIFY `docente_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `docente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `studenti`
 --
