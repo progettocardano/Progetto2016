@@ -1,20 +1,26 @@
 <?php
     require_once("../includes/connect.php");
     require_once("functions.php");
-    
+
     header("Content-type: text/json");
-    
+
     //non sono stati ricevuti username o password
-    if(!isset($_GET["username"]) && !isset($_GET["password"])) {
+    if(! (isset($_GET["username"]) || isset($_GET["password"]))) {
         die_message("Non è stato inserito username o password", false);
     }
-    
+
+    if(!isset($_GET["userType"])) {
+        die_message("Non è stato inserito il tipo di utente", false);
+    }
+
     $username = $_GET["username"];
     $password = crypt($_GET["password"], "$1$2$1npubhsaywn");
+    $userType = ($_GET["userType"] == "true") ? "studenti": "docenti";
+
     $query =
  <<<SQL
     SELECT *
-        FROM docenti
+        FROM $userType
     WHERE username = "$username"
         AND password = "$password"
 SQL;

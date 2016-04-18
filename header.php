@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="template/css/bootstrap.css" />
 		<script type="text/javascript" src="template/js/jquery-2.2.3.min.js"></script>
 		<script type="text/javascript" src="template/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="template/js/cookie.js"></script>
 		<script type="text/javascript" src="template/js/script.js"></script>
 		
 	</head>
@@ -32,8 +33,8 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- TODO: aggiungere il logo -->
-                    <a class="navbar-brand" href="#">
-                        <img alt="Cardano Pavia" src="template/images/logo.png" />
+                    <a class="navbar-brand" style="background-image: url('template/images/logo.png');width:40px;height:40px" href="#">
+                        <span aria-hidden="true">&nbsp;</span>
                     </a>
                 </div>
                 
@@ -41,17 +42,22 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="./">Pagina Principale</a></li>
-                        <li><a href=""></a></li>
+                        <?php if($STATE->guest) { ?>
+                        <li><a href="pages/studente_dashboard.php"></a></li>
+                        <li><a href="pages/studente_.php"></a></li>
+                        <li><a href="pages/dashboard.php"></a></li>
+                        <li><a href="pages/dashboard.php"></a></li>
+                        <?php } ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 						<li>
-                        <?php if(!$LOGGED_IN) { ?>
+                        <?php if($STATE->guest) { ?>
                         <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#modal-login">Accedi</button>  
                         <?php } else { ?>
                         <p class="navbar-text">Eseguito accesso come <?php echo($_SESSION["user"]["cognome"]) ?></p>
                         <?php } ?>
 						</li>
-						<?php if($LOGGED_IN) { ?>
+						<?php if(!$STATE->guest) { ?>
 						<li>
 							<a href="#" data-toggle="modal" data-target="#modal-logout">Esci</a>
 						<li>
@@ -59,7 +65,7 @@
 				   </ul> <!-- /.navbar-right -->
                 </div> <!-- /.collapse navbar-collapse -->
             </div> <!-- /.container-fluid -->
-			<?php if($LOGGED_IN) { ?>
+			<?php if(!$STATE->guest) { ?>
 
 			<div class="modal fade" id="modal-logout" tabindex="-1" role="dialog" aria-labelledby="modal-dialog-logout">
 				<div class="modal-dialog" role="document">
@@ -93,17 +99,35 @@
                                 <div class="form-group">
                                     <label for="inputUsername" class="col-sm-2 control-label">Nome Utente</label>
                                     <div class="col-sm-10">
-                                        <input name="username" type="text" class="form-control" id="inputUsername" placeholder="Username" />
+                                        <input name="username" type="text" class="form-control" id="inputUsername" placeholder="Username" required />
                                         <p class="help-block">Inserisci il tuo nome utente</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword" class="col-sm-2 control-label">Password</label>
                                     <div class="col-sm-10">
-                                        <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password" />
+                                        <input name="password" type="password" class="form-control" id="inputPassword" placeholder="Password" required />
                                         <p class="help-block">Inserisci la tua password</p>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Tipo di utente</label>
+                                    <div class="col-sm-10">
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="userType" id="radioStudente" value="studente" />
+                                                Studente
+                                            </label>
+                                        </div>
+                                        <div class="radio">
+                                            <label>
+                                                <input type="radio" name="userType" id="radioDocente" value="docente" checked />
+                                                Docente
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                
                             </div> <!-- /.modal-body -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Annulla</button>

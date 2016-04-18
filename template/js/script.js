@@ -1,12 +1,15 @@
 $(document).on("DOMContentLoaded", function(e) {
+    
+    //Cookie Policy
+    //TODO: documento protezione dati
+    
+    Cookie.init();
+    
     $("#modal-login-form").on("submit", function(e) {
-        var login_result;
-        var form = $(this);
         var submit_button = $("#modal-login-submit");
         
         submit_button.button('loading');
-        
-        login_result = login(
+        login(
             function(data) {
                 if(data.success) {
 					console.log(data.message);
@@ -37,23 +40,11 @@ $(document).on("DOMContentLoaded", function(e) {
 	});
 });
 
-function logout(successCallback, errorCallback) {
-    $.ajax({
-		method: "GET",
-		url: "api/logout.php",
-		dataType: "json",
-		success: successCallback,
-		error: errorCallback,
-		complete: function() {
-			$("#modal-logout-button").button('reset');
-		}
-	});
-}
-
 function login(successCallback, errorCallback) {
     data = {
         username: $("#inputUsername").val(),
-        password: $("#inputPassword").val()
+        password: $("#inputPassword").val(),
+        userType: $('#radioStudente').is(":checked")
     };
     $.ajax({
 		method: "GET",
@@ -77,4 +68,17 @@ function login_unsuccess(message) {
     $("#inputUsername").parent().addClass("has-error");
     $("#inputPassword").parent().addClass("has-error");
     $("#modal-login-form .modal-body").append(alert);
+}
+
+function logout(successCallback, errorCallback) {
+    $.ajax({
+		method: "GET",
+		url: "api/logout.php",
+		dataType: "json",
+		success: successCallback,
+		error: errorCallback,
+		complete: function() {
+			$("#modal-logout-button").button('reset');
+		}
+	});
 }
