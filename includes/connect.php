@@ -1,10 +1,5 @@
 <?php
-    $DB = mysqli_connect(
-        "localhost",         //host
-        "root",     //username
-        "",         //password
-        "my_database"  //database
-    );
+    require_once("connect_settings.php");
     
     $GUEST = 0;
     $STUDENTE = 1;

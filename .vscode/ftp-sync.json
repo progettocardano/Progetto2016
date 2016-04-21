@@ -11,6 +11,7 @@
     "privateKeyPath": null,
     "ignore": [
         ".vscode",
-        ".git"
+        ".git",
+        "includes/connect_settings.php"
     ]
 }
