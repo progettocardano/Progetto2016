@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 18, 2016 at 04:17 PM
+-- Generation Time: Apr 21, 2016 at 08:35 PM
 -- Server version: 5.7.11
 -- PHP Version: 5.6.19
 
@@ -49,15 +49,16 @@ CREATE TABLE `docenti` (
   `nome` varchar(64) COLLATE latin1_general_ci NOT NULL,
   `cognome` varchar(64) COLLATE latin1_general_ci NOT NULL,
   `materia` varchar(16) COLLATE latin1_general_ci DEFAULT NULL,
-  `data_nascita` date DEFAULT NULL
+  `data_nascita` date DEFAULT NULL,
+  `tipo` tinyint(1) NOT NULL DEFAULT '2'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 --
 -- Dumping data for table `docenti`
 --
 
-INSERT INTO `docenti` (`docente_id`, `username`, `password`, `nome`, `cognome`, `materia`, `data_nascita`) VALUES
-(1, 'Castro', '$1$2$IOb0F2UJNr7bgs57NTZuU/', 'Adrian David', 'Castro Tenemaya', 'Informatica', '1997-04-29');
+INSERT INTO `docenti` (`docente_id`, `username`, `password`, `nome`, `cognome`, `materia`, `data_nascita`, `tipo`) VALUES
+(1, 'Castro', '$1$2$IOb0F2UJNr7bgs57NTZuU/', 'Adrian David', 'Castro Tenemaya', 'Informatica', '1997-04-29', 2);
 
 -- --------------------------------------------------------
 
@@ -79,8 +80,17 @@ CREATE TABLE `studenti` (
   `telefono_cellulare` varchar(32) COLLATE latin1_general_ci DEFAULT NULL,
   `indirizzo_residenza` varchar(32) COLLATE latin1_general_ci DEFAULT NULL,
   `comune_residenza` varchar(32) COLLATE latin1_general_ci DEFAULT NULL,
+  `cap` int(6) NOT NULL,
+  `tipo` tinyint(1) NOT NULL DEFAULT '1',
   `docente_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+
+--
+-- Dumping data for table `studenti`
+--
+
+INSERT INTO `studenti` (`matricola`, `username`, `password`, `nome`, `cognome`, `codice_fiscale`, `data_nascita`, `anno_prima_iscrizione`, `email`, `telefono_fisso`, `telefono_cellulare`, `indirizzo_residenza`, `comune_residenza`, `cap`, `tipo`, `docente_id`) VALUES
+(19903, 'CASTRO_19903', '$1$2$IOb0F2UJNr7bgs57NTZuU/', 'Adrian David', 'Castro Tenemaya', 'CSTDNECOSEVARIE', '1997-04-29', 2012, 'iallone32@gmail.com', '+39 038499443', '+39 3899991660', 'Via Marzotto 1', 'Mortara', 27036, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -124,7 +134,7 @@ ALTER TABLE `docenti`
 -- AUTO_INCREMENT for table `studenti`
 --
 ALTER TABLE `studenti`
-  MODIFY `matricola` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `matricola` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19904;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
