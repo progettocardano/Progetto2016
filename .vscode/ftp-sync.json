@@ -1,0 +1,16 @@
+{
+    "remotePath": "./",
+    "host": "f14-preview.freehostingeu.com",
+    "username": "2109655",
+    "password": "123peppina",
+    "port": 21,
+    "protocol": "ftp",
+    "uploadOnSave": true,
+    "passive": false,
+    "debug": false,
+    "privateKeyPath": null,
+    "ignore": [
+        "\\.vscode",
+        "\\.git"
+    ]
+}
