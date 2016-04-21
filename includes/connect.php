@@ -1,9 +1,6 @@
 <?php
     require_once("connect_settings.php");
-    
-    $GUEST = 0;
-    $STUDENTE = 1;
-    $DOCENTE = 2;
+    require_once("class.user.php");
     
     if(!$DB) {
         echo ("Codice: " . mysqli_connect_errno());
@@ -12,20 +9,9 @@
     }
     
     session_start();
-	$STATE = (object) (array(
-        "guest" => true,
-        "studente" => false,
-        "docente" => false,
-    ));
+	$user = new User();
 	
 	if(isset($_SESSION["user"])) {
-		$STATE->guest = false;
-        if($_SESSION["user"]["tipo"] == $STUDENTE) {
-            $STATE->studente = true;
-            $STATE->docente = false;
-        } else {
-            $STATE->studente = false;
-            $STATE->docente = true;
-        }
+        $user->setState((int) $_SESSION["user"]["tipo"]);
 	}
 ?>

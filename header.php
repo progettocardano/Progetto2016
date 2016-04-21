@@ -42,22 +42,25 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="./">Pagina Principale</a></li>
-                        <?php if($STATE->guest) { ?>
-                        <li><a href="pages/studente_dashboard.php"></a></li>
-                        <li><a href="pages/studente_.php"></a></li>
-                        <li><a href="pages/dashboard.php"></a></li>
-                        <li><a href="pages/dashboard.php"></a></li>
+                        <?php if($user->isGuest()) { ?>
+                        <li><a href="pages/error/404.php">GUEST ONLY LINK</a></li>
+                        <?php } ?>
+                        <?php if($user->isStudente()) { ?>
+                        <li><a href="pages/error/404.php">STUDENT ONLY LINK</a></li>
+                        <?php } ?>
+                        <?php if($user->isDocente()) { ?>
+                        <li><a href="pages/error/404.php">PROF ONLY LINK</a></li>
                         <?php } ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
 						<li>
-                        <?php if($STATE->guest) { ?>
+                        <?php if($user->isGuest()) { ?>
                         <button type="button" class="btn btn-default navbar-btn" data-toggle="modal" data-target="#modal-login">Accedi</button>  
                         <?php } else { ?>
                         <p class="navbar-text">Eseguito accesso come <?php echo($_SESSION["user"]["cognome"]) ?></p>
                         <?php } ?>
 						</li>
-						<?php if(!$STATE->guest) { ?>
+						<?php if(!$user->isGuest()) { ?>
 						<li>
 							<a href="#" data-toggle="modal" data-target="#modal-logout">Esci</a>
 						<li>
@@ -65,7 +68,7 @@
 				   </ul> <!-- /.navbar-right -->
                 </div> <!-- /.collapse navbar-collapse -->
             </div> <!-- /.container-fluid -->
-			<?php if(!$STATE->guest) { ?>
+			<?php if(!$user->isGuest()) { ?>
 
 			<div class="modal fade" id="modal-logout" tabindex="-1" role="dialog" aria-labelledby="modal-dialog-logout">
 				<div class="modal-dialog" role="document">
