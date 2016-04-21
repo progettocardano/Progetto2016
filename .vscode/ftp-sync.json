@@ -1,13 +1,13 @@
 {
     "remotePath": "/home/www/",
-    "host": "f14-preview.freehostingeu.com",
+    "host": "progettocardano.eu.pn",
     "username": "2109655",
     "password": "123peppina",
     "port": 21,
     "protocol": "ftp",
     "uploadOnSave": true,
     "passive": false,
-    "debug": false,
+    "debug": true,
     "privateKeyPath": null,
     "ignore": [
         "\\.vscode",
