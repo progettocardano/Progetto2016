@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.5.1
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 21, 2016 at 08:35 PM
--- Server version: 5.7.11
--- PHP Version: 5.6.19
+-- Host: fdb14.freehostingeu.com
+-- Generation Time: Apr 28, 2016 at 07:53 AM
+-- Server version: 5.5.38-log
+-- PHP Version: 5.5.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `my_database`
+-- Database: `2109655_db`
 --
 
 -- --------------------------------------------------------
@@ -59,6 +59,20 @@ CREATE TABLE `docenti` (
 
 INSERT INTO `docenti` (`docente_id`, `username`, `password`, `nome`, `cognome`, `materia`, `data_nascita`, `tipo`) VALUES
 (1, 'Castro', '$1$2$IOb0F2UJNr7bgs57NTZuU/', 'Adrian David', 'Castro Tenemaya', 'Informatica', '1997-04-29', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `messaggi`
+--
+
+CREATE TABLE `messaggi` (
+  `messaggio_id` int(11) NOT NULL,
+  `matricola` int(11) NOT NULL,
+  `docente_id` int(11) NOT NULL,
+  `data` date NOT NULL,
+  `messaggio` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -110,6 +124,12 @@ ALTER TABLE `docenti`
   ADD PRIMARY KEY (`docente_id`);
 
 --
+-- Indexes for table `messaggi`
+--
+ALTER TABLE `messaggi`
+  ADD PRIMARY KEY (`messaggio_id`);
+
+--
 -- Indexes for table `studenti`
 --
 ALTER TABLE `studenti`
@@ -130,6 +150,11 @@ ALTER TABLE `attivita`
 --
 ALTER TABLE `docenti`
   MODIFY `docente_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `messaggi`
+--
+ALTER TABLE `messaggi`
+  MODIFY `messaggio_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `studenti`
 --
