@@ -17,13 +17,7 @@
     $password = crypt($_GET["password"], "$1$2$1npubhsaywn");
     $userType = ($_GET["userType"] == "true") ? "studenti": "docenti";
 
-    $query =
- <<<SQL
-    SELECT *
-        FROM $userType
-    WHERE username = "$username"
-        AND password = "$password"
-SQL;
+    $query = "SELECT * FROM {$userType} WHERE username = {$username} AND password = {$password}";
     $result =  $DB->query($query);
     if($result) {
         if($result->num_rows != 1) { // login fallito
