@@ -17,7 +17,7 @@
             die_message("Ottenuto con successo!", true, $row);
         }
     } else {
-        die_message("Error no: {$DB->errno}; error: {$DB->error", false)
+        die_message("Error no: {$DB->errno}; error: {$DB->error", false);
     }
     
     //multiple result
