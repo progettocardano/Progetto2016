@@ -7,35 +7,37 @@
     //single result
     if(isset($_GET["matricola"])) {
         $query = "SELECT * FROM docenti WHERE matricola = {$_GET[matricola]}";
-    }
-    $result = $DB->query($query);
-    if($result) {
-        if($result->num_rows < 1) {
-            die_message("Nessun risultato", false);
+        $result = $DB->query($query);
+        if($result) {
+            if($result->num_rows < 1) {
+                die_message("Nessun risultato", false);
+            } else {
+                $row = $result->fetch_assoc();
+                die_message("Ottenuto con successo!", true, $row);
+            }
         } else {
-            $row = $result->fetch_assoc();
-            die_message("Ottenuto con successo!", true, $row);
+            die_message("Error no: {$DB->errno}; error: {$DB->error}", false);
         }
-    } else {
-        die_message("Error no: {$DB->errno}; error: {$DB->error", false);
     }
-    
     //multiple result
     
     if( (isset($_GET["nome"]) || isset($_GET["cognome"])) ) {
         $nome = $_GET["nome"];
         $cognome = $_GET["cognome"];
         
-        $query = "SELECT * FROM studenti WHERE ";
+        $query = "SELECT
+            matricola,username,nome,cognome,codice_fiscale,data_nascita,anno_prima_iscrizione,
+            email,telefono_fisso,telefono_cellulare,indirizzo_residenza,comune_residenza,docente_id
+            FROM studenti WHERE ";
         if($nome) {
-            $query .= " nome = {$nome}";
+            $query .= " nome = '{$nome}'";
             if($cognome) {
-                $query .= "AND cognome = {$cognome}";
+                $query .= "AND cognome = '{$cognome}'";
             }
         } elseif($cognome) {
-            $query .= " cognome = {$cognome}";
+            $query .= " cognome = '{$cognome}'";
             if($nome) {
-                $query .= "AND nome = {$nome}";
+                $query .= "AND nome = '{$nome}'";
             }
         }
         
@@ -52,7 +54,7 @@
                 die_message("Ottenuti con successo!", true, $data);
             }
         } else {
-            die_message("Error no: {$DB->errno}; error: {$DB->error", false)
+            die_message("Error no: {$DB->errno}; error: {$DB->error}", false);
         }
     }
 ?>
