@@ -1,9 +1,7 @@
 <?php
-    function die_message($message, $success, $data) {
-        $result = array("message" => $message, "success" => $success);
-        if(isset($data)) {
-            array_push($result, $data);
-        }
-        die(json_encode($result));
+    function die_message($message, $sucess, $data) {
+        $message = array("message" => $message, "success" => $success, $data = null);
+        if($data) $message["data"] = $data;
+        die(json_encode($message));
     }
 ?>
