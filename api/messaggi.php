@@ -13,12 +13,12 @@
             }
             die_message("Messaggi ottenuti con successo", true, $data);
         } else {
-            die_message("Error no: {$DB->errno}; error: {$DB->error", false);
+            die_message("Error no: {$DB->errno}; error: {$DB->error}", false);
         }
     }
     
     if(isset($_GET["docente_id"])) { //ricezione messaggi per matricola
-        $query = "SELECT * FROM messaggi WHERE docente_id = {$_GET[docente_id} {$orderby}";
+        $query = "SELECT * FROM messaggi WHERE docente_id = {$_GET[docente_id]} {$orderby}";
         $result = $DB->query($query);
         if($result) {
             $data = array();
@@ -27,7 +27,7 @@
             }
             die_message("Messaggi ottenuti con successo", true, $data);
         } else {
-            die_message("Error no: {$DB->errno}; error: {$DB->error", false);
+            die_message("Error no: {$DB->errno}; error: {$DB->error}", false);
         }
     }
     
