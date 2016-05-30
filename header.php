@@ -26,7 +26,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <!-- Toggle del menu quando in mobile -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-menu" aria-expanded="false">
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -39,7 +39,7 @@
                 </div>
                 
                 <!-- Link di navigazione -->
-                <div class="collapse navbar-collapse">
+                <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="./">Pagina Principale</a></li>
                         <?php if($user->isGuest()) { ?>
