@@ -47,7 +47,7 @@ function login(successCallback, errorCallback) {
         userType: $('#radioStudente').is(":checked")
     };
     $.ajax({
-		method: "GET",
+		method: "POST",
         url: "api/login.php",
         dataType: "json",
         data: data,
