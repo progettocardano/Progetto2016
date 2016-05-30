@@ -1,4 +1,5 @@
 <?php
+    header("Content-type: text/json");
     function die_message($message, $success, $data) {
         $message = array("message" => $message, "success" => $success);
         if(isset($data)) $message["data"] = $data;
